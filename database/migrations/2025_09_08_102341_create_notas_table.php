@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faesa_instrumento_aval_usuario', function (Blueprint $table) {
+        Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->string('id_instrumento_aval_usuario');
-            $table->boolean('status');
+            $table->integer('conceito')->nullable();
+            $table->string('feedback')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faesa_instrumento_aval_usuario');
+        Schema::dropIfExists('notas');
     }
 };
