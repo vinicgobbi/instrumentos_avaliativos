@@ -25,11 +25,6 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
-        "autoload": {
-     		"classmap": [
-				"src/"
-     		]
-        },
     },
     "autoload-dev": {
         "psr-4": {
