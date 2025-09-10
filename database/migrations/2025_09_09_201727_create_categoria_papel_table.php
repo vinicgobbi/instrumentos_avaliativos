@@ -8,18 +8,16 @@ return new Class extends Migration
 {
     public function up():void
     {
-        Schema::create('inst_ava_categoria', function(Blueprint $table) {
+        Schema::create('inst_ava_categoria_papel', function(Blueprint $table) {
             $table->id();
-            $table->string('categoria');
-            $table->string('descricao');
-            $table->integer('conceito_max');
-            $table->integer('conceito_min');
+            $table->foreignId('categoria_id')->constrained('inst_ava_categoria')->cascadeOnDelete();
+            $table->foreignId('papel_id')->constrained('inst_ava_papel')->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
     public function down():void
     {
-        Schema::dropIfExists('inst_ava_categoria');
+        Schema::dropIfExists('inst_ava_categoria_papel');
     }
 };

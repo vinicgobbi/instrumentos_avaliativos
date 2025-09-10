@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notas', function (Blueprint $table) {
+        Schema::create('inst_ava_nota', function (Blueprint $table) {
             $table->id();
             $table->integer('conceito')->nullable();
             $table->string('feedback')->nullable();
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notas');
+        Schema::dropIfExists('inst_ava_nota');
     }
 };
