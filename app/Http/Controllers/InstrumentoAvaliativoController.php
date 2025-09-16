@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\INSTRUMENTO_AVALIATIVO;
 use Illuminate\Http\Request;
 
 class InstrumentoAvaliativoController extends Controller
 {
-    // READ
+    // GET
     public function getInstrumentoAvaliativo()
     {
-        return "getInstrumentoAvaliativo";
+        return INSTRUMENTO_AVALIATIVO::get();
     }
-    // READ - BY NAME
-    public function getInstrumentoAvaliativoByName()
+
+    // GET - BY NAME
+    public function getInstrumentoAvaliativoByName($name)
     {
-        return "getInstrumentoAvaliativoByName";
+        return INSTRUMENTO_AVALIATIVO::where('titulo', $name)->first();
     }
+
     // CREATE
     public function createInstrumentoAvaliativo(Request $request)
     {
-
         // DATA VALIDATION
         $validatedData = $request->validate([
-
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
 
@@ -32,8 +33,6 @@ class InstrumentoAvaliativoController extends Controller
             'descricao.required' => 'A descrição do Instrumento Avaliativo deve ser fornecida',
             'descricao.string' => 'A descrição do Instrumento Avaliativo deve ser em formato de texto',
         ]);
-        
-        return "createInstrumentoAvaliativos";
     }
     // UPDATE
     public function updateInstrumentoAvaliativo()
