@@ -3,15 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class INST_AVA_CRITERIO extends Model
+
+class INSTRUMENTO_AVALIATIVO extends Model
 {
-    protected $table = 'inst_ava_criterio';
+    protected $table = 'instrumento_avaliativo';
+
     protected $primaryKey = 'id';
+
     public $timestamps = true;
 
     protected $fillable = [
-        'criterio',
+        'titulo',
         'descricao'
     ];
 }
