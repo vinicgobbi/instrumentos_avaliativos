@@ -10,7 +10,7 @@ Route::middleware([AuthMiddleware::class])->prefix('coordinator')->group(functio
     Route::post('/instrumentos-avaliativos/criar', [InstrumentoAvaliativoController::class, 'createInstrumentoAvaliativo'])->name('create-instrumentoavaliativo');
     
     // UPDATE - SEND ID
-    Route::put('/instrumentos-avaliativos/update/{id}', action: [InstrumentoAvaliativoController::class, 'updateInstrumentoAvaliativo'])->name('update-instrumentoavaliativo');
+    Route::put('/instrumentos-avaliativos/update/{id}', [InstrumentoAvaliativoController::class, 'updateInstrumentoAvaliativo'])->name('update-instrumentoavaliativo');
 
     // GET
     Route::get('/instrumentos-avaliativos/get', [InstrumentoAvaliativoController::class, 'getInstrumentoAvaliativo'])->name('get-instrumentoavaliativo');
@@ -18,4 +18,6 @@ Route::middleware([AuthMiddleware::class])->prefix('coordinator')->group(functio
     // GET - BY NAME
     Route::get('/instrumentos-avaliativos/get/{name}', [InstrumentoAvaliativoController::class, 'getInstrumentoAvaliativoByName'])->name('get-instrumentoavaliativobyname');
 
+    // DELETE
+    Route::delete('/instrumentos-avaliativos/delete/{id}', [InstrumentoAvaliativoController::class, 'deleteInstrumentoAvaliativo'])->name('delete-instrumentoavaliativo');
 });
