@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\INSTRUMENTO_AVALIATIVO;
 
 
-class instrumentoAvaliativoService
+class InstrumentoAvaliativoService
 {
 
     public function getInstrumentoAvaliativo()
@@ -36,16 +36,15 @@ class instrumentoAvaliativoService
         return $instrumento;
     }
 
-    public function deleteInstrumentoAvaliativo(int $id): bool
+    public function deleteInstrumentoAvaliativo(int $id): ?INSTRUMENTO_AVALIATIVO
     {
         $instrumento = INSTRUMENTO_AVALIATIVO::find($id);
 
         if ($instrumento){
             $instrumento->delete();
-            return true;
-        }else{
-            return false;
         }
+
+        return $instrumento;
 
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\instrumentoAvaliativoService;
+use App\Services\InstrumentoAvaliativoService;
 use Illuminate\Http\Request;
 
 class InstrumentoAvaliativoController extends Controller
 {
     private $instrumentoAvaliativoService;
-    public function __construct(instrumentoAvaliativoService $instrumentoAvaliativoService)
+    public function __construct(InstrumentoAvaliativoService $instrumentoAvaliativoService)
     {
         $this->instrumentoAvaliativoService = $instrumentoAvaliativoService;
     }
@@ -72,7 +72,7 @@ class InstrumentoAvaliativoController extends Controller
     {
         $delete = $this->instrumentoAvaliativoService->deleteInstrumentoAvaliativo($id);
         if ($delete){
-            return response()->json(["message" => "Instrumento avaliativo deletado com sucesso"], 200);
+            return response()->json(["message" => "Instrumento avaliativo deletado com sucesso", "content" => $delete], 200);
         } else {
             return response()->json(["message" => "Instrumento avaliativo não encontrado"], 404);
         }
