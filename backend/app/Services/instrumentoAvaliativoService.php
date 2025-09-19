@@ -34,12 +34,16 @@ class instrumentoAvaliativoService
         return $instrumento;
     }
 
-    public function deleteInstrumentoAvaliativo(int $id): INSTRUMENTO_AVALIATIVO
+    public function deleteInstrumentoAvaliativo(int $id): bool
     {
-        $instrumento = INSTRUMENTO_AVALIATIVO::findOrFail($id);
+        $instrumento = INSTRUMENTO_AVALIATIVO::find($id);
 
-        $instrumento->delete();
+        if ($instrumento){
+            $instrumento->delete();
+            return true;
+        }else{
+            return false;
+        }
 
-        return $instrumento;
     }
 }

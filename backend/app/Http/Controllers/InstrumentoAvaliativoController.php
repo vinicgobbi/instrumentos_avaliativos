@@ -16,7 +16,7 @@ class InstrumentoAvaliativoController extends Controller
     public function getInstrumentoAvaliativo()
     {   
         $instrumento = $this->instrumentoAvaliativoService->getInstrumentoAvaliativo();
-        return response()->json($instrumento);
+        return $instrumento;
     }
 
     // GET - BY NAME
@@ -64,6 +64,11 @@ class InstrumentoAvaliativoController extends Controller
     // DELETE
     public function deleteInstrumentoAvaliativo($id)
     {
-        return $this->instrumentoAvaliativoService->deleteInstrumentoAvaliativo($id);
+        $delete = $this->instrumentoAvaliativoService->deleteInstrumentoAvaliativo($id);
+        if ($delete){
+            return response()->json(["message" => "Instrumento avaliativo deletado com sucesso"], 200);
+        } else {
+            return response()->json(["message" => "Instrumento avaliativo não encontrado"], 404);
+        }
     } 
 }
