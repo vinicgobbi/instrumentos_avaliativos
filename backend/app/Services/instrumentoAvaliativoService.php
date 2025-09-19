@@ -25,11 +25,13 @@ class instrumentoAvaliativoService
         return $instrumento;
     }
 
-    public function updateInstrumentoAvaliativo(array $validatedData, int $id): INSTRUMENTO_AVALIATIVO
+    public function updateInstrumentoAvaliativo(array $validatedData, int $id): ?INSTRUMENTO_AVALIATIVO
     {
-        $instrumento = INSTRUMENTO_AVALIATIVO::findOrFail($id);
+        $instrumento = INSTRUMENTO_AVALIATIVO::find($id);
 
-        $instrumento->update($validatedData);
+        if ($instrumento) {
+            $instrumento->update($validatedData);
+        }
 
         return $instrumento;
     }

@@ -4,9 +4,9 @@ use App\Http\Controllers\InstrumentoAvaliativoController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
 // // ACESS - COORDINATOR
 // Route::middleware([AuthMiddleware::class])->prefix('coordinator')->group(function() {

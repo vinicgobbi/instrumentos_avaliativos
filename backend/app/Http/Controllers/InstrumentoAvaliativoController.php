@@ -59,7 +59,13 @@ class InstrumentoAvaliativoController extends Controller
 
         $instrumento = $this->instrumentoAvaliativoService->updateInstrumentoAvaliativo($validatedData, $id);
 
-        return $instrumento;
+        if (!$instrumento) {
+            return response()->json(["message" => "Instrumento avaliativo não encontrado"], 404);
+        }else {
+            return $instrumento;
+        }
+
+        
     }
     // DELETE
     public function deleteInstrumentoAvaliativo($id)
