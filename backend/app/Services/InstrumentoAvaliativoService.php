@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\INSTRUMENTO_AVALIATIVO;
+use App\Models\InstrumentoAvaliativo;
 
 
 class InstrumentoAvaliativoService
@@ -10,24 +10,24 @@ class InstrumentoAvaliativoService
 
     public function getInstrumentoAvaliativo()
     {
-        return INSTRUMENTO_AVALIATIVO::all();
+        return InstrumentoAvaliativo::all();
     }
 
     public function getInstrumentoAvaliativoByName(string $name)
     {
-       return INSTRUMENTO_AVALIATIVO::where('titulo', 'LIKE', "%{$name}%")->get();
+       return InstrumentoAvaliativo::where('titulo', 'LIKE', "%{$name}%")->get();
     }
 
-    public function createInstrumentoAvaliativo(array $validatedData): INSTRUMENTO_AVALIATIVO
+    public function createInstrumentoAvaliativo(array $validatedData): InstrumentoAvaliativo
     {
-        $instrumento = INSTRUMENTO_AVALIATIVO::create($validatedData);
+        $instrumento = InstrumentoAvaliativo::create($validatedData);
 
         return $instrumento;
     }
 
-    public function updateInstrumentoAvaliativo(array $validatedData, int $id): ?INSTRUMENTO_AVALIATIVO
+    public function updateInstrumentoAvaliativo(array $validatedData, int $id): ?InstrumentoAvaliativo
     {
-        $instrumento = INSTRUMENTO_AVALIATIVO::find($id);
+        $instrumento = InstrumentoAvaliativo::find($id);
 
         if ($instrumento) {
             $instrumento->update($validatedData);
@@ -36,9 +36,9 @@ class InstrumentoAvaliativoService
         return $instrumento;
     }
 
-    public function deleteInstrumentoAvaliativo(int $id): ?INSTRUMENTO_AVALIATIVO
+    public function deleteInstrumentoAvaliativo(int $id): ?InstrumentoAvaliativo
     {
-        $instrumento = INSTRUMENTO_AVALIATIVO::find($id);
+        $instrumento = InstrumentoAvaliativo::find($id);
 
         if ($instrumento){
             $instrumento->delete();

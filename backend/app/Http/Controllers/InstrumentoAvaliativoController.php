@@ -32,12 +32,30 @@ class InstrumentoAvaliativoController extends Controller
         $validatedData = $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
+            'disciplina' => 'required|string|max:11',
+            'turma' => 'required|string|max:20'
         ], [
+            // título
             'titulo.required' => 'O título do Instrumento Avaliativo deve ser fornecido',
-            'titulo.string' => 'O título do Instrumento Avaliativo deve ser em formato de texto',
+            'titulo.string'   => 'O título do Instrumento Avaliativo deve estar em formato de texto',
+            'titulo.max'      => 'O título do Instrumento Avaliativo não pode ter mais de 255 caracteres',
+
+            // descrição
             'descricao.required' => 'A descrição do Instrumento Avaliativo deve ser fornecida',
-            'descricao.string' => 'A descrição do Instrumento Avaliativo deve ser em formato de texto',
+            'descricao.string'   => 'A descrição do Instrumento Avaliativo deve estar em formato de texto',
+            'descricao.max'      => 'A descrição do Instrumento Avaliativo não pode ter mais de 255 caracteres',
+
+            // disciplina
+            'disciplina.required' => 'A disciplina do Instrumento Avaliativo deve ser fornecida',
+            'disciplina.string'   => 'A disciplina do Instrumento Avaliativo deve estar em formato de texto',
+            'disciplina.max'      => 'A disciplina do Instrumento Avaliativo não pode ter mais de 11 caracteres',
+
+            // turma
+            'turma.required' => 'A turma do Instrumento Avaliativo deve ser fornecida',
+            'turma.string'   => 'A turma do Instrumento Avaliativo deve estar em formato de texto',
+            'turma.max'      => 'A turma do Instrumento Avaliativo não pode ter mais de 20 caracteres',
         ]);
+
 
         $instrumento = $this->instrumentoAvaliativoService->createInstrumentoAvaliativo($validatedData);
 
@@ -50,11 +68,28 @@ class InstrumentoAvaliativoController extends Controller
         $validatedData = $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
+            'disciplina' => 'required|string|max:11',
+            'turma' => 'required|string|max:20'
         ], [
+            // título
             'titulo.required' => 'O título do Instrumento Avaliativo deve ser fornecido',
-            'titulo.string' => 'O título do Instrumento Avaliativo deve ser em formato de texto',
+            'titulo.string'   => 'O título do Instrumento Avaliativo deve estar em formato de texto',
+            'titulo.max'      => 'O título do Instrumento Avaliativo não pode ter mais de 255 caracteres',
+
+            // descrição
             'descricao.required' => 'A descrição do Instrumento Avaliativo deve ser fornecida',
-            'descricao.string' => 'A descrição do Instrumento Avaliativo deve ser em formato de texto',
+            'descricao.string'   => 'A descrição do Instrumento Avaliativo deve estar em formato de texto',
+            'descricao.max'      => 'A descrição do Instrumento Avaliativo não pode ter mais de 255 caracteres',
+
+            // disciplina
+            'disciplina.required' => 'A disciplina do Instrumento Avaliativo deve ser fornecida',
+            'disciplina.string'   => 'A disciplina do Instrumento Avaliativo deve estar em formato de texto',
+            'disciplina.max'      => 'A disciplina do Instrumento Avaliativo não pode ter mais de 11 caracteres',
+
+            // turma
+            'turma.required' => 'A turma do Instrumento Avaliativo deve ser fornecida',
+            'turma.string'   => 'A turma do Instrumento Avaliativo deve estar em formato de texto',
+            'turma.max'      => 'A turma do Instrumento Avaliativo não pode ter mais de 20 caracteres',
         ]);
 
         $instrumento = $this->instrumentoAvaliativoService->updateInstrumentoAvaliativo($validatedData, $id);
@@ -72,7 +107,7 @@ class InstrumentoAvaliativoController extends Controller
     {
         $delete = $this->instrumentoAvaliativoService->deleteInstrumentoAvaliativo($id);
         if ($delete){
-            return response()->json(["message" => "Instrumento avaliativo deletado com sucesso", "content" => $delete], 200);
+            return response()->json(["message" => "Instrumento avaliativo deletado com sucesso", "data" => $delete], 200);
         } else {
             return response()->json(["message" => "Instrumento avaliativo não encontrado"], 404);
         }

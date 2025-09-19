@@ -2,46 +2,55 @@
 
 namespace App\Services;
 
-use App\Models\INST_AVA_CATEGORIA;
+use App\Models\InstAvaCategoria;
 
 class InstAvaCategoriaService
 {
     public function getInstAvaCategoria()
     {
-        return INST_AVA_CATEGORIA::all();
+        return InstAvaCategoria::with(['instrumento_avaliativo:id,titulo,descricao'])
+                        ->get();
     }
 
     public function getInstAvaCategoriaByName(string $name)
     {
-        return INST_AVA_CATEGORIA::where("categoria", "LIKE", "%{$name}%")->get();
+        return InstAvaCategoria::with(['instrumento_avaliativo:id,titulo,descricao'])->where("categoria", "LIKE", "%{$name}%")->get();
     }
 
     public function createInstAvaCategoria(array $data)
     {
-        $categoria = INST_AVA_CATEGORIA::create($data);
+        $categoria = InstAvaCategoria::create($data);
 
         return $categoria;
     }
 
-    public function updateInstAvaCategoria(array $data, $id)
+    public function updateInstAvaCategoria(array $data, $id): ?InstAvaCategoria
     {
-        $categoria = INST_AVA_CATEGORIA::find($id);
+        $categoria = InstAvaCategoria::with(['instrumento_avaliativo:id,titulo,descricao'])
+                        ->find($id);
 
-        if ($categoria) {
-            $categoria->update($data);
+        if (!$categoria) {
+            return null;
         }
 
+        $categoria->update($data);
         return $categoria;
     }
 
-    public function deleteInstAvaCategoria($id)
+    public function deleteInstAvaCategoria($id): ?InstAvaCategoria
     {
-        $categoria = INST_AVA_CATEGORIA::find($id);
+        // Carrega apenas campos essenciais do relacionamento para evitar recursão
+        $categoria = InstAvaCategoria::with(['instrumento_avaliativo:id,titulo,descricao'])
+                        ->find($id);
 
-        if ($categoria) {
-            $categoria->delete();
+        if (!$categoria) {
+            return null; // categoria não encontrada
         }
 
+        // Deleta a categoria
+        $categoria->delete();
+
         return $categoria;
     }
+
 }
